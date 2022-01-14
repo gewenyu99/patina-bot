@@ -1,0 +1,26 @@
+{
+  "name": "patina-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gewenyu99/patina-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gewenyu99/patina-bot/issues"
+  },
+  "homepage": "https://github.com/gewenyu99/patina-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "eris": "^0.16.1",
+    "express": "^4.17.2",
+    "node-appwrite": "^4.0.2",
+    "request": "^2.88.2"
+  }
+}
