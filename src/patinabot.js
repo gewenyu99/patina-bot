@@ -1,4 +1,3 @@
-const { func } = require('assert-plus');
 const eris = require('eris');
 const https = require("https");
 const bot = new eris.Client(process.env.DISCORD_KEY);
@@ -8,7 +7,7 @@ const client = new sdk.Client();
 const database = new sdk.Database(client);
 const storage = new sdk.Storage(client);
 client
-    .setEndpoint('https://localhost/v1') // Your API Endpoint
+    .setEndpoint(process.env.APPWRITE_API) // Your API Endpoint
     .setProject('61e09cfd531bb77b9ce0') // Your project ID
     .setKey(process.env.APPWRITE_API_KEY)
     .setSelfSigned()
@@ -102,6 +101,7 @@ async function handleSave(msg) {
 }
 
 async function handleSend(msg) {
+    
     msgParsed = msg.content.split(" ")
     if (msgParsed.indexOf("!send") + 1 >= msgParsed.length) {
         msg.channel.createMessage("Where the name at?")
@@ -110,6 +110,11 @@ async function handleSend(msg) {
     memeName = msgParsed[msgParsed.indexOf("!send") + 1]
 
     let { documents, sum } = await database.listDocuments("memedex", [sdk.Query.equal("user_id", msg.author.id), sdk.Query.equal("meme_name", memeName)]);
+
+    if (documents.length < 1) {
+        msg.channel.createMessage("Wut? never heard of dat boi");
+
+    }
 
     let file_meta = await storage.getFile(documents[0]["meme_file_id"]);
     let file = await storage.getFileView(documents[0]["meme_file_id"]);
