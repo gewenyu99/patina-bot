@@ -90,7 +90,7 @@ async function handleSave(msg) {
     }
 
     https.get(meme_file_metadata.url, async (res) => {
-        await storage.createFile(meme_id, res);
+        await storage.createFile(meme_id, res, ["user:" + msg.author.id]);
     }).on('error', (err) => {
         msg.channel.createMessage("Save failed :< The shelves are not working")
     });
