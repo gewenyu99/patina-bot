@@ -29,6 +29,9 @@ bot.on('messageCreate', async (msg) => {
     if (botWasMentioned && msg.content.includes("!send")) {
         return await handleSend(msg);
     }
+    if (botWasMentioned && msg.content.includes("!myId")) {
+        return await handleMyId(msg);
+    }
 });
 
 bot.on('error', err => {
@@ -36,6 +39,11 @@ bot.on('error', err => {
 });
 
 bot.connect();
+
+async function handleMyId(msg){
+    let dm = await msg.author.getDMChannel();
+    dm.createMessage(msg.author.id);
+}
 
 async function handleSave(msg) {
     msgParsed = msg.content.split(" ")
