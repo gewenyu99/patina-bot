@@ -46,7 +46,7 @@ async function handleMyId(msg){
 }
 
 async function handleSave(msg) {
-    msgParsed = msg.content.split(" ")
+    let msgParsed = msg.content.split(" ")
     if (msgParsed.indexOf("!save") + 1 >= msgParsed.length) {
         msg.channel.createMessage("You gotta name your image!")
         return
@@ -69,9 +69,9 @@ async function handleSave(msg) {
     }
 
 
-    fileName = msgParsed[msgParsed.indexOf("!save") + 1]
-    meme_id = msg.author.id + msg.author.username + fileName
-    meme_id = (meme_id.length > 22) ? meme_id.substring[0,22] + '..' : meme_id;
+    let fileName = msgParsed[msgParsed.indexOf("!save") + 1]
+    let meme_id = msg.author.id + msg.author.username + fileName
+    meme_id = meme_id.substring(0, 25);
     if (msg.attachments.length !== 1) {
         msg.channel.createMessage("One at a time boi")
         return
