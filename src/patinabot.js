@@ -70,8 +70,8 @@ async function handleSave(msg) {
 
 
     fileName = msgParsed[msgParsed.indexOf("!save") + 1]
-    fileName = (fileName.length > 35) ? fileName.substring[0,75] + '..' : fileName;
     meme_id = msg.author.id + msg.author.username + fileName
+    meme_id = (meme_id.length > 22) ? meme_id.substring[0,22] + '..' : meme_id;
     if (msg.attachments.length !== 1) {
         msg.channel.createMessage("One at a time boi")
         return
