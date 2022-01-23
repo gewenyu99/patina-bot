@@ -59,7 +59,7 @@ async function handleSave(msg) {
                 "user_id": msg.author.id,
                 "user_name": msg.author.username,
                 "user_memes": []
-            });
+            },["user:" + msg.author.id],["user:" + msg.author.id]);
     }
     else {
         if (documents.length != 1) {
@@ -91,7 +91,7 @@ async function handleSave(msg) {
     }
 
     https.get(meme_file_metadata.url, async (res) => {
-        await storage.createFile(meme_id, res, ["user:" + msg.author.id]);
+        await storage.createFile(meme_id, res, ["user:" + msg.author.id], ["user:" + msg.author.id]);
     }).on('error', (err) => {
         msg.channel.createMessage("Save failed :< The shelves are not working")
     });
@@ -104,7 +104,7 @@ async function handleSave(msg) {
             "user_id": msg.author.id,
             "meme_file_id": meme_id,
             "meme_name": fileName
-        });
+        },["user:" + msg.author.id],["user:" + msg.author.id]);
 
     msg.channel.createMessage("Saved " + fileName)
 }
